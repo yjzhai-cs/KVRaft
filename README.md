@@ -1,4 +1,4 @@
-# KVRaft: Simple In-Memory Database with Key-Value Pair via Raft
+# KVRaft: Simplified In-Memory Database with Key-Value Pair via Raft
 
 
 ## Project Overview 
