@@ -1,25 +1,47 @@
-### Documentation
+# KVRaft: Simple In-Memory Database with Key-Value Pair via Raft
+
+
+## Project Overview 
+The Raft KV service is mainly composed of three components: Clerk, Service, and Raft. Among them, Raft has been implemented in the previous content. The KV Service is a replicated state machine, consisting of many KV servers that achieve replication through Raft. When facing some failures or network partitions, as long as more than half of the KV servers are active and can communicate with each other, the KV Service can continue to handle requests from the Clerk. [KVRaft Doc](./KVRaft-Doc.pdf)
+
+<div align="center">
+    <img src="./KVRaft.png" width="890px" align="center">
+</div>
+
+Election Mechanism
+
+<div align="center">
+    <img src="./Election.png" width="590px" align="center">
+</div>
+
+Log Replication
+
+<div align="center">
+    <img src="./Replication.png" width="490px" align="center">
+</div>
+
+## Documentation
 
 - Libary
-    - [labgob](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-lib-labgob.md/)
-    - [labrpc](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-lib-labrpc.md/)
-    - [logger](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-lib-logger.md/)
-    - [deepcopy](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-lib-deepcopy.md/)
+    - [labgob](./docs/doc-lib-labgob.md/)
+    - [labrpc](./docs/doc-lib-labrpc.md/)
+    - [logger](./docs/doc-lib-logger.md/)
+    - [deepcopy](./docs/doc-lib-deepcopy.md/)
 
 - Architecture
-    - [mapreduce](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-arch-mapreduce.md/)
-    - [raft](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-arch-raft.md/)
+    - [mapreduce](./docs/doc-arch-mapreduce.md/)
+    - [raft](./docs/doc-arch-raft.md/)
 
 - Application
-    - [kvraft](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-app-kvraft.md/)
+    - [kvraft](./docs/doc-app-kvraft.md/)
 
 - Others
-    - [configs](https://github.com/yjzhai-cs/6.5840/blob/master/docs/doc-configs.md/)
+    - [configs](./docs/doc-configs.md/)
 
 
-### Algorithms
+## Details
 
-Project‘s Catalogue:
+**Project‘s Catalogue**:
 
 ```shell
 .
@@ -35,26 +57,8 @@ Project‘s Catalogue:
 `-- script // dstest, dslogs
 ```
 
-#### I MapReduce
 
-*A. Progress*
-
-- worker count test. PASS
-- job count test. PASS
-- early exit test. PASS
-- indexer test. PASS
-- map parallelism test. PASS
-- reduce parallelism test. PASS
-- crash test. NO
-
-*B. Debug*
-
-```go
-log.Pirntln("...")
-log.Printf("...")
-```
-
-#### II Raft
+### I Raft
 
 Features: leader election; log replication; log persistence; snapshot; log compression; no-op log entry
 Structure of Raft library I'll show
@@ -184,7 +188,7 @@ python3 ./../script/dstest -n 100 -p 50 2A 2B 2C 2D
 `-- util.go
 ```
 
-#### III KV Raft
+### II KV Raft
 
 Features: 
 - select server as 'leader' randomly(clerk remembers **which server turned out to be the leader for the last RPC**, and send the next RPC to that server first);
@@ -219,14 +223,14 @@ python3 ./../script/dstest -n 20 -p 20 TestSnapshotRPC3B TestSnapshotSize3B Test
 
 ```
 
-### Reference
+## Reference
 
 - [The Raft Consensus Algorithm](https://raft.github.io/)
 - [Raft](http://thesecretlivesofdata.com/raft/#replication)
 - [Students' Guide to Raft](https://thesquareplanet.com/blog/students-guide-to-raft/)
 - [Raft Q&A](https://thesquareplanet.com/blog/raft-qa/)
 
-### Links
+## Links
 
 - [MIT 6.5840 Distributed System](https://pdos.csail.mit.edu/6.824/schedule.html)
 - [GO](https://tour.go-zh.org/welcome/1)
